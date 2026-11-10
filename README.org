@@ -11,7 +11,13 @@ tree -L 1 --dirsfirst -F --noreport
 
 #+RESULTS:
 : ./
+: ├── content/
+: ├── docs/
+: ├── public/
+: ├── static/
 : ├── CLAUDE.md
+: ├── Makefile
+: ├── publish.el
 : └── README.org
 
 * Research

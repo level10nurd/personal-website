@@ -4,6 +4,9 @@
 # TODO(dalton): Replace the bracketed placeholders below with your own words.
 # Lines starting with "# " are Org comments and never appear on the site.
 
+#+attr_html: :class headshot :alt Dalton Allen :width 480 :height 480
+[[file:headshot.jpg]]
+
 I'm Dalton Allen, an accountant who thinks in spreadsheets. I work on
 [what you do: close, reporting, FP&A, systems...] at [where you work],
 and I care about numbers that are correct, models that are legible, and

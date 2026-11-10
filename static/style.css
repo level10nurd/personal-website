@@ -81,6 +81,22 @@ h1.title {
   border-radius: 2px;
 }
 
+/* Headshot: a standalone image paragraph exports as <figure><img class="headshot">.
+   Floated beside the opening paragraphs; not counted as a row. */
+figure { margin: 0; }
+figure:has(> img.headshot) {
+  float: right;
+  width: 8.5rem;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+img.headshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+}
+
 /* Definition lists (used for Contact) as a two-column range. */
 dl {
   display: grid;
@@ -133,12 +149,15 @@ dd { margin: 0; }
 
 /* Content column with row-number gutter --------------------------------- */
 
+/* The sheet is anchored to the left edge like a real spreadsheet: the gutter
+   runs down the viewport's left side and column A starts beside it. The
+   content column is width-limited for readability but never centered. */
 main#content {
   position: relative;
   flex: 1;
   width: 100%;
   max-width: calc(var(--measure) + var(--gutter) + 2rem);
-  margin: 0 auto;
+  margin: 0;
   padding: 2.5rem 1rem 3.5rem calc(var(--gutter) + 1rem);
   counter-reset: row;
 }
@@ -246,6 +265,7 @@ main#content dl > dt::before { line-height: 1.7rem; }
   main#content > section > h3::before,
   main#content > section > .outline-text-2 > :not(dl)::before,
   main#content dl > dt::before { display: none; }
+  figure:has(> img.headshot) { width: 6rem; margin-left: 1rem; }
   dl { grid-template-columns: 1fr; row-gap: 0.15rem; }
   dd { margin-bottom: 0.6rem; }
 }
