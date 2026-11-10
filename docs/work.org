@@ -1,6 +1,0 @@
-#+title: Work
-* DONE add headshot
-see ~/Dropbox/pictures/professional/dalton_headshot.JPG 
-* DONE update layout
-layout is not right on desktop. the numbered excel rows are showing up in the middle of the sheet. see ~/Pictures/Screenshots/screenshot-2026-11-09_20-13-05-zen.png 
-
