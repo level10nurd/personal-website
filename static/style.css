@@ -1,0 +1,251 @@
+/* daltonjallen.com
+   Spreadsheet chrome, light touch: a row-number gutter, a formula-bar header,
+   and sheet-tab navigation. Pure CSS, no JavaScript. */
+
+:root {
+  --bg: #fcfcfa;
+  --fg: #1f2328;
+  --muted: #6e747d;
+  --rule: #d9dde3;
+  --chrome: #f3f4f6;
+  --accent: #1a7f37;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --gutter: 3rem;
+  --measure: 65ch;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111417;
+    --fg: #e6e8eb;
+    --muted: #8b929b;
+    --rule: #2a3038;
+    --chrome: #171b20;
+    --accent: #3fb950;
+  }
+}
+
+/* Base ------------------------------------------------------------------ */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* Selected-cell outline on keyboard focus. */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+h1.title { font-size: 2rem; margin: 0 0 1.75rem; }
+h2 { font-size: 1.375rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1.125rem; margin: 2rem 0 0.5rem; }
+p { margin: 0 0 1.1rem; }
+ul, ol { margin: 0 0 1.1rem; padding-left: 1.5rem; }
+code, pre { font-family: var(--font-mono); font-size: 0.9em; }
+
+/* A1 is the title cell: give it the selected-cell border the formula bar refers to. */
+h1.title {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  margin-left: -0.45rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 2px;
+}
+
+/* Definition lists (used for Contact) as a two-column range. */
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1.5rem;
+  row-gap: 0.4rem;
+  margin: 0 0 1.1rem;
+}
+dt {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  align-self: baseline;
+  padding-top: 0.2em;
+}
+dd { margin: 0; }
+
+/* Formula bar (site header) -------------------------------------------- */
+
+#preamble .formula-bar {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--rule);
+  background: var(--chrome);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+#preamble .cell-ref {
+  min-width: var(--gutter);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  border-right: 1px solid var(--rule);
+}
+#preamble .fx {
+  padding: 0.5rem 0.65rem;
+  font-style: italic;
+  color: var(--muted);
+  border-right: 1px solid var(--rule);
+}
+#preamble .formula {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  color: var(--fg);
+  text-decoration: none;
+}
+#preamble .formula:hover { text-decoration: underline; }
+
+/* Content column with row-number gutter --------------------------------- */
+
+main#content {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: calc(var(--measure) + var(--gutter) + 2rem);
+  margin: 0 auto;
+  padding: 2.5rem 1rem 3.5rem calc(var(--gutter) + 1rem);
+  counter-reset: row;
+}
+
+/* The gutter strip itself. */
+main#content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--gutter);
+  background: var(--chrome);
+  border-right: 1px solid var(--rule);
+}
+
+/* Each top-level block is a row. Lists count once; contact entries count per label. */
+main#content > header > h1.title,
+main#content > p,
+main#content > ul,
+main#content > ol,
+main#content > blockquote,
+main#content > pre,
+main#content > table,
+main#content > section > h2,
+main#content > section > h3,
+main#content > section > .outline-text-2 > :not(dl),
+main#content dl > dt {
+  position: relative;
+  counter-increment: row;
+}
+
+main#content > header > h1.title::before,
+main#content > p::before,
+main#content > ul::before,
+main#content > ol::before,
+main#content > blockquote::before,
+main#content > pre::before,
+main#content > table::before,
+main#content > section > h2::before,
+main#content > section > h3::before,
+main#content > section > .outline-text-2 > :not(dl)::before,
+main#content dl > dt::before {
+  content: counter(row);
+  position: absolute;
+  top: 0;
+  left: calc(-1 * (var(--gutter) + 1rem));
+  width: calc(var(--gutter) - 0.6rem);
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.7rem;
+  color: var(--muted);
+  pointer-events: none;
+  user-select: none;
+}
+main#content > header > h1.title::before {
+  left: calc(-1 * (var(--gutter) + 1rem - 0.45rem));
+  line-height: 2.75rem;
+}
+main#content dl > dt::before { line-height: 1.7rem; }
+
+/* Sheet tabs (site footer) --------------------------------------------- */
+
+#postamble .sheet-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 1rem;
+  border-top: 1px solid var(--rule);
+  background: var(--chrome);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+#postamble .tab {
+  padding: 0.5rem 1rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+#postamble .tab:hover { color: var(--fg); }
+#postamble .tab.is-active {
+  color: var(--fg);
+  background: var(--bg);
+  border-bottom-color: var(--accent);
+  font-weight: 500;
+}
+
+/* Narrow screens: drop the gutter, keep everything else ----------------- */
+
+@media (max-width: 40rem) {
+  main#content { padding-left: 1rem; }
+  main#content::before { display: none; }
+  main#content > header > h1.title::before,
+  main#content > p::before,
+  main#content > ul::before,
+  main#content > ol::before,
+  main#content > blockquote::before,
+  main#content > pre::before,
+  main#content > table::before,
+  main#content > section > h2::before,
+  main#content > section > h3::before,
+  main#content > section > .outline-text-2 > :not(dl)::before,
+  main#content dl > dt::before { display: none; }
+  dl { grid-template-columns: 1fr; row-gap: 0.15rem; }
+  dd { margin-bottom: 0.6rem; }
+}

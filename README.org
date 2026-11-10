@@ -5,6 +5,15 @@
 
 Personal website.
 
+#+begin_src sh :results output :dir ~/Projects/personal-website
+tree -L 1 --dirsfirst -F --noreport
+#+end_src
+
+#+RESULTS:
+: ./
+: ├── CLAUDE.md
+: └── README.org
+
 * Research
 - https://stefanzweifel.dev/about/
   - Really nice about page. Creating something like this could be a good first could be a good first step
@@ -69,4 +78,6 @@ Expierence
 - Links
 - Templates
 ** IDEA Blog
+** Media
+-[[~/Dropbox/pictures/professional/dalton_headshot.JPG][headshot]]
     

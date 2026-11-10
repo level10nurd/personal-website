@@ -1,0 +1,27 @@
+#+title: Dalton Allen
+#+language: en
+
+# TODO(dalton): Replace the bracketed placeholders below with your own words.
+# Lines starting with "# " are Org comments and never appear on the site.
+
+I'm Dalton Allen, an accountant who thinks in spreadsheets. I work on
+[what you do: close, reporting, FP&A, systems...] at [where you work],
+and I care about numbers that are correct, models that are legible, and
+tools that get out of the way.
+
+# TODO(dalton): One short paragraph on how you work or what you believe about the craft.
+
+This site is built the way I like to work: plain text in Emacs Org mode,
+published to static HTML, no JavaScript. A light coat of spreadsheet
+chrome because that is where I spend my days.
+
+* Contact
+:PROPERTIES:
+:CUSTOM_ID: contact
+:END:
+
+# TODO(dalton): Fill in or remove entries. Keep only the channels you actually check.
+
+- Email :: [[mailto:dalton@daltonjallen.com][dalton@daltonjallen.com]]
+- GitHub :: [[https://github.com/USERNAME][github.com/USERNAME]]
+- LinkedIn :: [[https://www.linkedin.com/in/USERNAME][linkedin.com/in/USERNAME]]
