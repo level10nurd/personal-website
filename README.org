@@ -1,0 +1,72 @@
+:PROPERTIES:
+:ID:       f7fec4d5-51f1-40b7-8aaa-b27c37564a8b
+:END:
+#+title: Readme
+
+Personal website.
+
+* Research
+- https://stefanzweifel.dev/about/
+  - Really nice about page. Creating something like this could be a good first could be a good first step
+- https://www.taniarascia.com/
+  - super polished
+  - would like to progress to something like this
+- https://www.sj.land/talent
+  - polished/inspirational
+- https://mattrothenberg.com/
+  - fun take on the classic personal website
+- https://www.briewolfson.com/
+  - layout and ui is good
+  - this feels like a good way to communicate who i am, what I do, how i do it, in a clear and meaningful way
+- https://lynnandtonic.com/
+  - really clean
+  - book type layout
+- https://dariofigs.com/
+  - simple
+  - could have some domain applications that apply to me
+- https://www.nate.rip/
+  - amazing!
+  - feels like you are flipping through a book
+- https://www.lukevolkert.com/ 
+  - super nice elevation on the classic developer blog/writting feed 
+- https://www.ethanchng.com/
+  - amazing
+  - super simple
+  - could emulate for first site
+- https://ozan.at/mar?ref=onepagelove
+  - super cool
+  - unique
+  - found a way to apply his work to his website
+- https://julienblanchard.com/now.html
+  - simple but good design
+  - A+
+- https://taingram.org/
+* Specs
+- content generated with emacs org mode and published with emacs
+  - need to configure emacs [[id:b00b47fd-1582-4619-a94a-4d2cc4740ac4][Configure Emacs for website publication]]
+- static/no java script
+- keep it simple
+  - examples of "simple"
+    - https://stefanzweifel.dev/about/
+    - https://www.ethanchng.com/
+    - https://julienblanchard.com/ 
+- design inspired by my work
+  - like you see developers do terminal inspired websites/other domain inspired site
+    - https://v0.app/templates/8-bit-retro-blog-shx0LpBv4gV
+    - https://v0.app/templates/the-future-of-black-sEWHZzkLFg3 
+    - https://v0.app/templates/ascii-art-portfolio-I96b70NNT2E
+  - but, inspired by what I do
+    - accounting?
+    - spreadsheets?
+    - can't find any good/fun creative examples.
+    - but just a touch of design. something that says I have a perspective and I care about aethetics
+* Content
+** IDEA About
+** IDEA Timeline
+Expierence
+** IDEA Contact
+** IDEA Resources
+- Links
+- Templates
+** IDEA Blog
+    
