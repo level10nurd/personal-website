@@ -4,19 +4,38 @@
 #+attr_html: :class headshot :alt Dalton Allen :width 480 :height 480
 [[file:headshot.jpg]]
 
-I'm Dalton Allen, a fractional CFO in Los Angeles. I run finance for
-nonprofits that have outgrown their bookkeeper but aren't ready for a
-full-time CFO: strategy, budgeting, reporting, automation, and the
-operations that hold it together. The goal is always the same: numbers
-that work for the mission instead of the other way around. If that
-sounds like your organization, [[#contact][send me a note]].
+I'm Dalton Allen. I asked for an Excel book for my sixth birthday, and
+the spreadsheet thing never wore off. These days I'm a fractional CFO
+in Los Angeles, running finance for nonprofits that have outgrown
+their bookkeeper but aren't ready for a full-time CFO. That covers
+strategy, budgeting, reporting, automation, and the operations that
+hold it together. The goal is always the same: numbers that work for
+the mission instead of the other way around. If that sounds like your
+organization, [[#contact][send me a note]].
 
-I've been at home in finance for most of my life. I started in public
-and corporate accounting, became Director of Finance for a 100-person
-law firm at 24, and was CFO of a California wine startup at 28, where
-we grew revenue from $18M to $100M. Then I opened my own practice, and
-since then I've worked across a lot of industries, including a stint
-as interim CEO of a venture-funded health startup.
+I started in public and corporate accounting, became Director of
+Finance for a 100-person law firm at 24, and was CFO of a California
+wine startup at 28, where we grew revenue from $18M to $100M. Then I
+opened my own practice. Since then I've worked across a lot of
+industries, including a stint as interim CEO of a venture-funded
+health startup.
+
+* Why nonprofits
+:PROPERTIES:
+:CUSTOM_ID: why-nonprofits
+:END:
+
+I spent my early career in for-profit and startup companies. At some
+point I wanted my energy, in and outside of work, going toward things
+that do good in the world. So I pivoted to nonprofits.
+
+My first nonprofit client taught me something I didn't expect:
+nonprofit accounting is stuck in the past. The sector runs a decade
+behind its for-profit counterparts on the best accounting technology,
+by my count. Nonprofits see cost as the barrier. The real barrier is
+initiative. When I brought in the same tools the for-profits already
+use, I could offer a much higher level of service, CFO work where they
+had been getting bookkeeping, without any increase in budget.
 
 * How I work
 :PROPERTIES:
@@ -37,24 +56,21 @@ as interim CEO of a venture-funded health startup.
 :END:
 
 - Excel, mostly. Google Sheets when the team lives there.
-- Emacs and Org mode for notes, writing, and this site.
-- Whatever ledger the client already runs. I would rather fix the
-  process than switch the software.
-- This site is plain text in Org mode, published to static HTML with
-  Emacs, no JavaScript. The spreadsheet chrome is there because that is
-  where I spend my days.
+- Whatever ledger the client already runs. I'd rather fix the process
+  than switch the software.
+- Emacs and Org mode for notes, writing, and this site, which is plain
+  text published to static HTML with no JavaScript. The spreadsheet
+  chrome is there because that's where I spend my days.
 
 * Off the clock
 :PROPERTIES:
 :CUSTOM_ID: off-the-clock
 :END:
 
-I grew up in Helena, Montana, and hold degrees in Accounting and
-Finance from Carroll College. The spreadsheet thing started early: I
-asked for an Excel book for my sixth birthday. Away from the desk
-you'll find me hiking with my husband Corey and our dog Ernie, lost in
-a good book, or putzing around with whatever project has my attention
-this month.
+I grew up in Helena, Montana, and got my Accounting and Finance
+degrees at Carroll College. Away from the desk I'm hiking with my
+husband Corey and our dog Ernie, reading, or putzing around with
+whatever project has my attention this month.
 
 * Contact
 :PROPERTIES:
