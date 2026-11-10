@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    .bg { fill: #fcfcfa; }
+    .rule { stroke: #c8cdd4; }
+    .sel { stroke: #1a7f37; }
+    .handle { fill: #1a7f37; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #111417; }
+      .rule { stroke: #3a414a; }
+      .sel { stroke: #3fb950; }
+      .handle { fill: #3fb950; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="5"/>
+  <path class="rule" fill="none" stroke-width="1" d="M16.5 0v32M0 16.5h32"/>
+  <rect class="sel" fill="none" stroke-width="2.5" x="3.25" y="3.25" width="13.25" height="13.25"/>
+  <rect class="handle" x="14.5" y="14.5" width="5" height="5"/>
+</svg>

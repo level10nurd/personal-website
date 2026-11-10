@@ -27,26 +27,38 @@
         (postamble "footer" "postamble")))
 
 (defconst site-html-head
-  "<link rel=\"stylesheet\" href=\"/style.css\">"
+  (concat
+   "<link rel=\"stylesheet\" href=\"/style.css\">\n"
+   "<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\">\n"
+   "<link rel=\"icon\" href=\"/favicon.png\" sizes=\"32x32\" type=\"image/png\">\n"
+   "<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\">")
   "Extra <head> content. Org adds charset, viewport, title, and generator itself.")
 
-;; The header reads like a spreadsheet formula bar: the selected cell (A1 is
-;; the page title), the fx label, and the "formula" (the site name).
+;; The header reads like a spreadsheet formula bar: the name box (A1 is the
+;; page title), the fx label, and the "formula" (the site name). Below it, a
+;; column header strip: a corner cell above the row-number gutter, then
+;; column A, which holds the page.
 (defconst site-preamble
   (concat
    "<nav class=\"formula-bar\" aria-label=\"Site\">\n"
    "  <span class=\"cell-ref\" aria-hidden=\"true\">A1</span>\n"
    "  <span class=\"fx\" aria-hidden=\"true\">fx</span>\n"
    "  <a class=\"formula\" href=\"/\">Dalton Allen</a>\n"
-   "</nav>")
+   "</nav>\n"
+   "<div class=\"col-head\" aria-hidden=\"true\">\n"
+   "  <span class=\"corner\"></span>\n"
+   "  <span class=\"col is-active\">A</span>\n"
+   "</div>")
   "HTML for the site header.")
 
-;; The footer is a strip of sheet tabs. New pages become new tabs.
+;; The footer is a strip of sheet tabs, pinned to the bottom of the window by
+;; the stylesheet. New pages become new tabs; the "+" is decoration only.
 (defconst site-postamble
   (concat
    "<nav class=\"sheet-tabs\" aria-label=\"Pages\">\n"
    "  <a class=\"tab is-active\" href=\"/\" aria-current=\"page\">About</a>\n"
    "  <a class=\"tab\" href=\"#contact\">Contact</a>\n"
+   "  <span class=\"tab tab-new\" aria-hidden=\"true\">+</span>\n"
    "</nav>")
   "HTML for the site footer.")
 

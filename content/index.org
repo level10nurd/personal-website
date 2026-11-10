@@ -42,25 +42,10 @@ had been getting bookkeeping, without any increase in budget.
 :CUSTOM_ID: how-i-work
 :END:
 
-- Correct first. A model that is fast and wrong is worse than no model.
-- Legible to the next person. If the board treasurer can't follow the
-  spreadsheet, it isn't finished.
-- Automate the boring parts so the interesting conversations get the
-  time.
-- Big picture and small details are the same job. I like the strategy
-  conversation, and I'm just as happy three tabs deep in a workbook.
-
-* Tools
-:PROPERTIES:
-:CUSTOM_ID: tools
-:END:
-
-- Excel, mostly. Google Sheets when the team lives there.
-- Whatever ledger the client already runs. I'd rather fix the process
-  than switch the software.
-- Emacs and Org mode for notes, writing, and this site, which is plain
-  text published to static HTML with no JavaScript. The spreadsheet
-  chrome is there because that's where I spend my days.
+- *People First*: Our work is only effective when we enjoy and trust eachother. 
+- *Garbage in, garbage out*: Take time to do it right the first time, it costs half as much.
+- *Automate, automate, automate*: Eliminate the busywork, focus on the important work. 
+- *Big picture, small details*: I focus on the minutia, so we can focus on mission.
 
 * Off the clock
 :PROPERTIES:

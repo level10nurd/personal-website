@@ -1,6 +1,6 @@
 /* daltonjallen.com
-   Spreadsheet chrome, light touch: a row-number gutter, a formula-bar header,
-   and sheet-tab navigation. Pure CSS, no JavaScript. */
+   Spreadsheet chrome, pure CSS, no JavaScript: a formula bar, a column header,
+   a row-number gutter, a selected cell (A1), and sticky sheet tabs. */
 
 :root {
   --bg: #fcfcfa;
@@ -8,11 +8,13 @@
   --muted: #6e747d;
   --rule: #d9dde3;
   --chrome: #f3f4f6;
+  --chrome-active: #e4e7eb;
   --accent: #1a7f37;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --gutter: 3rem;
-  --measure: 65ch;
+  /* Column A width, in rem so the header strip and the content agree on it. */
+  --measure: 38.5rem;
   color-scheme: light dark;
 }
 
@@ -23,13 +25,15 @@
     --muted: #8b929b;
     --rule: #2a3038;
     --chrome: #171b20;
+    --chrome-active: #20262d;
     --accent: #3fb950;
   }
 }
 
 /* Base ------------------------------------------------------------------ */
 
-html { box-sizing: border-box; }
+html { box-sizing: border-box; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 *, *::before, *::after { box-sizing: inherit; }
 
 body {
@@ -72,14 +76,29 @@ p { margin: 0 0 1.1rem; }
 ul, ol { margin: 0 0 1.1rem; padding-left: 1.5rem; }
 code, pre { font-family: var(--font-mono); font-size: 0.9em; }
 
-/* A1 is the title cell: give it the selected-cell border the formula bar refers to. */
-h1.title {
+/* Selected cell: the title is A1 and gets the border the formula bar refers
+   to, plus the fill handle in the corner. A headline jumped to from the sheet
+   tabs (e.g. #contact) becomes the selected cell too. */
+h1.title,
+main#content h2:target {
   display: inline-block;
   padding: 0.1rem 0.45rem;
   margin-left: -0.45rem;
   border: 1.5px solid var(--accent);
   border-radius: 2px;
 }
+h1.title::after,
+main#content h2:target::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border: 1px solid var(--bg);
+}
+main#content h2:target { scroll-margin-top: 1.5rem; }
 
 /* Headshot: a standalone image paragraph exports as <figure><img class="headshot">.
    Floated beside the opening paragraphs; not counted as a row. */
@@ -120,32 +139,67 @@ dd { margin: 0; }
 
 #preamble .formula-bar {
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.4rem;
   border-bottom: 1px solid var(--rule);
   background: var(--chrome);
   font-family: var(--font-mono);
   font-size: 0.875rem;
   line-height: 1.4;
 }
+/* Name box and formula field read as inputs. */
+#preamble .cell-ref,
+#preamble .formula {
+  padding: 0.2rem 0.6rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
 #preamble .cell-ref {
-  min-width: var(--gutter);
-  padding: 0.5rem 0.75rem;
+  min-width: calc(var(--gutter) + 0.5rem);
   text-align: center;
-  border-right: 1px solid var(--rule);
 }
 #preamble .fx {
-  padding: 0.5rem 0.65rem;
   font-style: italic;
   color: var(--muted);
-  border-right: 1px solid var(--rule);
+  padding: 0 0.15rem;
 }
 #preamble .formula {
   flex: 1;
-  padding: 0.5rem 0.75rem;
   color: var(--fg);
   text-decoration: none;
 }
 #preamble .formula:hover { text-decoration: underline; }
+
+/* Column header: a corner cell above the gutter, then column A, which is
+   highlighted because A1 is the selected cell. */
+#preamble .col-head {
+  display: flex;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5rem;
+  color: var(--muted);
+}
+#preamble .corner {
+  flex: none;
+  width: var(--gutter);
+  border-right: 1px solid var(--rule);
+}
+#preamble .col {
+  flex: none;
+  width: calc(var(--measure) + 2rem);
+  text-align: center;
+  border-right: 1px solid var(--rule);
+}
+#preamble .col.is-active {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--chrome-active);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
 
 /* Content column with row-number gutter --------------------------------- */
 
@@ -205,8 +259,8 @@ main#content dl > dt::before {
   position: absolute;
   top: 0;
   left: calc(-1 * (var(--gutter) + 1rem));
-  width: calc(var(--gutter) - 0.6rem);
-  text-align: right;
+  width: var(--gutter);
+  text-align: center;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 400;
@@ -218,42 +272,71 @@ main#content dl > dt::before {
   pointer-events: none;
   user-select: none;
 }
-main#content > header > h1.title::before {
-  left: calc(-1 * (var(--gutter) + 1rem - 0.45rem));
-  line-height: 2.75rem;
-}
 main#content dl > dt::before { line-height: 1.7rem; }
+
+/* The selected cell's row header is highlighted, like its column header. */
+main#content > header > h1.title::before,
+main#content > section > h2:target::before {
+  left: calc(-1 * (var(--gutter) + 1rem - 0.45rem));
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--chrome-active);
+  box-shadow: inset -2px 0 0 var(--accent);
+}
 
 /* Sheet tabs (site footer) --------------------------------------------- */
 
+/* The tab strip stays pinned to the bottom of the window, as in a workbook. */
+#postamble {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
 #postamble .sheet-tabs {
   display: flex;
-  gap: 2px;
+  align-items: stretch;
   padding: 0 1rem;
   border-top: 1px solid var(--rule);
   background: var(--chrome);
   font-size: 0.875rem;
   line-height: 1.4;
+  overflow-x: auto;
 }
 #postamble .tab {
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1.1rem;
+  margin-top: -1px;
   color: var(--muted);
   text-decoration: none;
-  border-bottom: 2px solid transparent;
+  border: 1px solid transparent;
+  border-top-color: var(--rule);
+  white-space: nowrap;
 }
-#postamble .tab:hover { color: var(--fg); }
+#postamble .tab:hover { color: var(--fg); background: var(--chrome-active); }
 #postamble .tab.is-active {
-  color: var(--fg);
+  color: var(--accent);
   background: var(--bg);
-  border-bottom-color: var(--accent);
-  font-weight: 500;
+  border-color: var(--rule);
+  border-top-color: var(--bg);
+  border-bottom: 2px solid var(--accent);
+  font-weight: 600;
 }
+#postamble .tab-new {
+  color: var(--muted);
+  font-weight: 600;
+  padding-inline: 0.8rem;
+}
+#postamble .tab-new:hover { background: none; color: var(--muted); }
 
-/* Narrow screens: drop the gutter, keep everything else ----------------- */
+/* Narrow screens: drop the gutter and column header, keep everything else */
 
 @media (max-width: 40rem) {
   main#content { padding-left: 1rem; }
   main#content::before { display: none; }
+  #preamble .col-head { display: none; }
   main#content > header > h1.title::before,
   main#content > p::before,
   main#content > ul::before,
