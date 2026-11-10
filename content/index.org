@@ -1,30 +1,65 @@
 #+title: Dalton Allen
 #+language: en
 
-# TODO(dalton): Replace the bracketed placeholders below with your own words.
-# Lines starting with "# " are Org comments and never appear on the site.
-
 #+attr_html: :class headshot :alt Dalton Allen :width 480 :height 480
 [[file:headshot.jpg]]
 
-I'm Dalton Allen, an accountant who thinks in spreadsheets. I work on
-[what you do: close, reporting, FP&A, systems...] at [where you work],
-and I care about numbers that are correct, models that are legible, and
-tools that get out of the way.
+I'm Dalton Allen, a fractional CFO in Los Angeles. I run finance for
+nonprofits that have outgrown their bookkeeper but aren't ready for a
+full-time CFO: strategy, budgeting, reporting, automation, and the
+operations that hold it together. The goal is always the same: numbers
+that work for the mission instead of the other way around. If that
+sounds like your organization, [[#contact][send me a note]].
 
-# TODO(dalton): One short paragraph on how you work or what you believe about the craft.
+I've been at home in finance for most of my life. I started in public
+and corporate accounting, became Director of Finance for a 100-person
+law firm at 24, and was CFO of a California wine startup at 28, where
+we grew revenue from $18M to $100M. Then I opened my own practice, and
+since then I've worked across a lot of industries, including a stint
+as interim CEO of a venture-funded health startup.
 
-This site is built the way I like to work: plain text in Emacs Org mode,
-published to static HTML, no JavaScript. A light coat of spreadsheet
-chrome because that is where I spend my days.
+* How I work
+:PROPERTIES:
+:CUSTOM_ID: how-i-work
+:END:
+
+- Correct first. A model that is fast and wrong is worse than no model.
+- Legible to the next person. If the board treasurer can't follow the
+  spreadsheet, it isn't finished.
+- Automate the boring parts so the interesting conversations get the
+  time.
+- Big picture and small details are the same job. I like the strategy
+  conversation, and I'm just as happy three tabs deep in a workbook.
+
+* Tools
+:PROPERTIES:
+:CUSTOM_ID: tools
+:END:
+
+- Excel, mostly. Google Sheets when the team lives there.
+- Emacs and Org mode for notes, writing, and this site.
+- Whatever ledger the client already runs. I would rather fix the
+  process than switch the software.
+- This site is plain text in Org mode, published to static HTML with
+  Emacs, no JavaScript. The spreadsheet chrome is there because that is
+  where I spend my days.
+
+* Off the clock
+:PROPERTIES:
+:CUSTOM_ID: off-the-clock
+:END:
+
+I grew up in Helena, Montana, and hold degrees in Accounting and
+Finance from Carroll College. The spreadsheet thing started early: I
+asked for an Excel book for my sixth birthday. Away from the desk
+you'll find me hiking with my husband Corey and our dog Ernie, lost in
+a good book, or putzing around with whatever project has my attention
+this month.
 
 * Contact
 :PROPERTIES:
 :CUSTOM_ID: contact
 :END:
 
-# TODO(dalton): Fill in or remove entries. Keep only the channels you actually check.
-
 - Email :: [[mailto:dalton@daltonjallen.com][dalton@daltonjallen.com]]
-- GitHub :: [[https://github.com/USERNAME][github.com/USERNAME]]
-- LinkedIn :: [[https://www.linkedin.com/in/USERNAME][linkedin.com/in/USERNAME]]
+- LinkedIn :: [[https://www.linkedin.com/in/dalton-allen-80803b1aa][linkedin.com/in/dalton-allen-80803b1aa]]
