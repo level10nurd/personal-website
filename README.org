@@ -20,6 +20,54 @@ tree -L 1 --dirsfirst -F --noreport
 : ├── publish.el
 : └── README.org
 
+* Publishing
+Content lives in =content/*.org=. =publish.el= holds the whole =org-publish= configuration and
+uses only built-in Org. Generated HTML goes to =public/= (gitignored, never committed).
+
+#+begin_src sh
+make publish   # emacs --batch -Q -l publish.el -f site-publish  -> public/
+make serve     # publish, then preview at http://localhost:8000
+make check     # publish, then fail if index.html/style.css/CNAME are missing or any <script> exists
+make clean     # remove public/ and .org-timestamps/
+#+end_src
+
+Interactive, from a running Emacs: =M-x load-file RET publish.el RET=, then =M-x org-publish RET site RET=.
+
+* Deployment
+The site is hosted on GitHub Pages at https://daltonjallen.com from
+https://github.com/level10nurd/personal-website.
+
+** How a deploy happens
+1. Edit =.org= files (or =static/=), commit, and push to =master=.
+2. =.github/workflows/publish.yml= installs Emacs 30.1, runs =make check=, and uploads =public/=.
+3. =actions/deploy-pages= publishes it. A push is the entire release process; nothing is built locally.
+
+Watch a run with =gh run watch=, or re-run a failed deploy with =gh run rerun --failed <run-id>=.
+
+** One-time setup (already done, recorded for reference)
+- Repo must be public for Pages on a free account.
+- Pages source set to GitHub Actions, custom domain set, HTTPS enforced:
+  #+begin_src sh
+  gh api -X POST repos/level10nurd/personal-website/pages -f build_type=workflow
+  gh api -X PUT  repos/level10nurd/personal-website/pages -f cname=daltonjallen.com -f build_type=workflow
+  gh api -X PUT  repos/level10nurd/personal-website/pages -F https_enforced=true
+  #+end_src
+- =static/CNAME= contains =daltonjallen.com= and is copied into =public/= on every build, so the custom
+  domain survives redeploys.
+
+** DNS (Cloudflare)
+- Apex =@=: CNAME to =level10nurd.github.io= (Cloudflare flattens it), or four A records to
+  185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153.
+- =www=: CNAME to =level10nurd.github.io=.
+- Proxy status must be *DNS only* (grey cloud). GitHub issues the TLS certificate by connecting directly;
+  a proxied record makes the domain check fail and returns Cloudflare's 403.
+- Certificate issuance can take up to an hour after DNS changes. Check status with
+  =gh api repos/level10nurd/personal-website/pages=.
+
+** Adding a page
+Add a =.org= file under =content/= and a tab to =site-postamble= in =publish.el=. Give any headline you link
+to a =:CUSTOM_ID:= so the anchor is stable.
+
 * Research
 - https://stefanzweifel.dev/about/
   - Really nice about page. Creating something like this could be a good first could be a good first step
